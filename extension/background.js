@@ -4,7 +4,7 @@ let tabMediaStates = new Map(); // tabId -> {playing, title, artist, etc}
 // Connect to native host
 function connectNative() {
   try {
-    port = browser.runtime.connectNative("per_tab_mpris_bridge");
+    port = browser.runtime.connectNative("sound_tabs");
     
     port.onMessage.addListener((msg) => {
       console.log("Native host response:", msg);
