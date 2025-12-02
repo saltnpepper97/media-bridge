@@ -1,8 +1,8 @@
-# SoundTabs
+# Media Bridge
 
 Control each Firefox tab's audio individually from your desktop media controls on Linux.
 
-Sound Tabs creates separate MPRIS media players for each browser tab playing audio. This means you can control YouTube, Spotify Web, SoundCloud, and any other audio source independently using your desktop's media keys, system tray, or any MPRIS-compatible controller — just like native desktop apps.
+Media Bridge creates separate MPRIS media players for each browser tab playing audio. This means you can control YouTube, Spotify Web, SoundCloud, and any other audio source independently using your desktop's media keys, system tray, or any MPRIS-compatible controller — just like native desktop apps.
 
 ## Features
 
@@ -14,15 +14,15 @@ Sound Tabs creates separate MPRIS media players for each browser tab playing aud
 
 ## Installation
 
-Sound Tabs requires two components:
+Media Bridge requires two components:
 
 ### 1. Install the Firefox Extension
 
-Install from [Mozilla Add-ons](https://addons.mozilla.org/firefox/addon/soundtabs/) (pending approval)
+Install from [Mozilla Add-ons](https://addons.mozilla.org/firefox/addon/mediabridge/) (pending approval)
 
 Or install from source:
 ```bash
-git clone https://github.com/saltnpepper97/sound-tabs.git
+git clone https://github.com/saltnpepper97/media-bridge.git
 cd sound-tabs/extension
 # Load as temporary extension in Firefox (about:debugging)
 ```
@@ -38,7 +38,7 @@ The extension communicates with MPRIS through a native messaging bridge.
 mkdir -p ~/.mozilla/native-messaging-hosts/
 
 # Copy the manifest
-cp native-host/sound_tabs_bridge.json ~/.mozilla/native-messaging-hosts/
+cp native-host/media_bridge.json ~/.mozilla/native-messaging-hosts/
 ```
 
 **Install the Python bridge script:**
@@ -56,8 +56,8 @@ cp native-host/sound_tabs_bridge.json ~/.mozilla/native-messaging-hosts/
 2. **Adapt the script for standalone use** (for developers):
    - Check out the [Stasis repository](https://github.com/saltnpepper97/stasis)
    - Extract/modify the MPRIS bridge functionality for your setup
-   - Place your script at `/usr/local/bin/sound_tabs_host.py`
-   - Make it executable: `chmod +x /usr/local/bin/sound_tabs_host.py`
+   - Place your script at `/usr/local/bin/media_bridge_host.py`
+   - Make it executable: `chmod +x /usr/local/bin/media_bridge_host.py`
 
 **A standalone version of the bridge script is planned for a future release.**
 
@@ -88,10 +88,10 @@ Each tab appears as a separate player with its own controls!
 
 Check if the native host is properly connected:
 1. Open Firefox's Browser Console (Ctrl+Shift+J)
-2. Look for messages from Sound Tabs
+2. Look for messages from Media Bridge
 3. You should see: `✓ Connected to native host`
 4. If you see connection errors, verify:
-   - `sound_tabs_bridge.json` is in `~/.mozilla/native-messaging-hosts/`
+   - `media_bridge.json` is in `~/.mozilla/native-messaging-hosts/`
    - The Python script path in the JSON is correct
    - The Python script is executable
 
@@ -111,21 +111,21 @@ Check if the native host is properly connected:
 
 ### Project Structure
 ```
-sound-tabs/
+media-bridge/
 ├── extension/           # Firefox extension
 │   ├── manifest.json   # Extension manifest
 │   ├── background.js   # Extension background script
 │   └── content.js      # Content script for media detection
 └── native-host/        # Native messaging configuration
-    └── sound_tabs_bridge.json  # Native host manifest
+    └── media_bridge.json  # Native host manifest
 ```
 
 ### Building from Source
 
 ```bash
 # Clone the repository
-git clone https://github.com/saltnpepper97/soundtabs.git
-cd sound-tabs
+git clone https://github.com/saltnpepper97/media-bridge.git
+cd media-bridge
 
 # Install the extension temporarily in Firefox
 # 1. Open about:debugging
@@ -135,12 +135,12 @@ cd sound-tabs
 
 # Install native host
 mkdir -p ~/.mozilla/native-messaging-hosts/
-cp native-host/sound_tabs_bridge.json ~/.mozilla/native-messaging-hosts/
+cp native-host/media_bridge.json ~/.mozilla/native-messaging-hosts/
 ```
 
 ## Privacy
 
-Sound Tabs does **not** collect any data. All communication happens locally between:
+Media Bridge does **not** collect any data. All communication happens locally between:
 - Firefox tabs ↔ Extension background script ↔ Native host ↔ D-Bus/MPRIS
 
 No telemetry, no analytics, no external servers.

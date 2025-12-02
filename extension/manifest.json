@@ -1,11 +1,11 @@
 {
   "manifest_version": 2,
-  "name": "Sound Tabs",
+  "name": "Media Bridge",
   "version": "1.0.0",
   "description": "Creates per-tab MPRIS players using a native messaging bridge.",
   "browser_specific_settings": {
     "gecko": {
-      "id": "sound-tabs@soundtabs.addon",
+      "id": "media-bridge@mediabridge.addon",
       "data_collection_permissions": {
         "required": ["none"]
       }
